@@ -1,0 +1,33 @@
+services:
+  hz1:
+    image: "hazelcast/hazelcast:5.4.0"
+    container_name: hz-cp-1
+    ports:
+    - "5701:5701"
+    environment:
+      - JAVA_OPTS=-Xmx3g -Xms3g
+      - JAVA_OPTS=-Dhazelcast.config=/opt/hazelcast/hazelcast.yaml
+    volumes:
+      - ./hazelcast.yml:/opt/hazelcast/hazelcast.yaml
+
+  hz2:
+    image: "hazelcast/hazelcast:5.4.0"
+    container_name: hz-cp-2
+    ports:
+    - "5702:5701"
+    environment:
+      - JAVA_OPTS=-Xmx3g -Xms3g
+      - JAVA_OPTS=-Dhazelcast.config=/opt/hazelcast/hazelcast.yaml
+    volumes:
+      - ./hazelcast.yml:/opt/hazelcast/hazelcast.yaml
+
+  hz3:
+    image: "hazelcast/hazelcast:5.4.0"
+    container_name: hz-cp-3
+    ports:
+    - "5703:5701"
+    environment:
+      - JAVA_OPTS=-Xmx3g -Xms3g
+      - JAVA_OPTS=-Dhazelcast.config=/opt/hazelcast/hazelcast.yaml
+    volumes:
+      - ./hazelcast.yml:/opt/hazelcast/hazelcast.yaml
