@@ -6,6 +6,8 @@ services:
     - "5701:5701"
     environment:
       - JAVA_OPTS=-Xmx3g -Xms3g
+    networks:
+      - hz-net
 
   hz2:
     image: "hazelcast/hazelcast:5.4.0"
@@ -14,6 +16,8 @@ services:
     - "5702:5701"
     environment:
       - JAVA_OPTS=-Xmx3g -Xms3g
+    networks:
+      - hz-net
 
   hz3:
     image: "hazelcast/hazelcast:5.4.0"
@@ -22,3 +26,8 @@ services:
     - "5703:5701"
     environment:
       - JAVA_OPTS=-Xmx3g -Xms3g
+    networks:
+      - hz-net
+
+networks:
+  hz-net:

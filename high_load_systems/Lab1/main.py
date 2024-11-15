@@ -2,6 +2,7 @@ import hazelcast
 from hazelcast.config import Config
 import concurrent.futures
 import time
+import os
 
 def inc_map_noblock(map, key, num_iterations):
     for _ in range(num_iterations):
@@ -28,6 +29,8 @@ def main():
     config = Config()
     config.cluster_members = ['localhost:5701', 'localhost:5702', 'localhost:5703']  
     client = hazelcast.HazelcastClient(config)
+    time.sleep(10)
+    print(os.system('sudo docker logs hz-1 | grep -Pzo \'Members {.*} \\[\\n(.*Member.*\\n)+\\]\\n\''))
     print("connected :-)")
     map_name = 'map-1'
     distributed_map = client.get_map(map_name).blocking()

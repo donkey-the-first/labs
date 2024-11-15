@@ -10,7 +10,7 @@ def inc_atomic_long(counter, num_iterations):
 def main():
     print("Connecting...")
     config = Config()
-    config.cluster_members = ['localhost:5701', 'localhost:5702', 'localhost:5703']
+    config.cluster_members = ['localhost:5704', 'localhost:5705', 'localhost:5706']
     config.cluster_name = "test"
 
     client = hazelcast.HazelcastClient(config)
