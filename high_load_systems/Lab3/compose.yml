@@ -1,0 +1,14 @@
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    ports:
+      - "7474:7474"  # Порт для веб-інтерфейсу Neo4j Browser
+      - "7687:7687"  # Bolt-порт для клієнтів
+#    volumes:
+#      - ./neo4j/data:/data  # Збереження даних
+#      - ./neo4j/logs:/logs  # Логи
+#      - ./neo4j/import:/var/lib/neo4j/import  # Імпорт даних
+#      - ./neo4j/plugins:/plugins  # Плагіни
+    environment:
+      - NEO4J_AUTH=neo4j/${PASSWORD}
