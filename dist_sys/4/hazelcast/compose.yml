@@ -1,0 +1,45 @@
+services:
+  hz-1:
+    container_name: 'hz-1'
+    image: 'hazelcast/hazelcast:5.4.0'
+    network_mode: 'hz-net'
+    environment:
+      - HZ_CLUSTERNAME=dev-map
+      - HZ_NETWORK_PUBLICADDRESS=172.18.0.1:5701
+    ports:
+      - '5701:5701'
+
+  hz-2:
+    container_name: 'hz-2'
+    image: 'hazelcast/hazelcast:5.4.0'
+    network_mode: 'hz-net'
+    environment:
+      - HZ_CLUSTERNAME=dev-map
+      - HZ_NETWORK_PUBLICADDRESS=172.18.0.1:5702
+    ports:
+      - '5702:5701'
+
+  hz-3:
+    container_name: 'hz-3'
+    image: 'hazelcast/hazelcast:5.4.0'
+    network_mode: 'hz-net'
+    environment:
+      - HZ_CLUSTERNAME=dev-map
+      - HZ_NETWORK_PUBLICADDRESS=172.18.0.1:5703
+    ports:
+      - '5703:5701'
+
+  hazelcast-management:
+    container_name: 'distmap-management-center'
+    image: 'hazelcast/management-center:5.4.0'
+    network_mode: 'hz-net'
+    depends_on:
+      - hz-1
+      - hz-2
+      - hz-3
+    ports:
+      - '8000:8080'
+
+networks:
+  hz-net:
+    driver: bridge
