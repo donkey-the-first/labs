@@ -1,0 +1,13 @@
+services:
+  consul-server:
+    image: hashicorp/consul:latest
+    command: "agent"
+    network_mode: "host"
+    container_name: consul-01
+    volumes:
+      - consul-data:/consul/data
+      - ./server.json:/consul/config/server.json:ro
+
+    
+volumes:
+  consul-data:
